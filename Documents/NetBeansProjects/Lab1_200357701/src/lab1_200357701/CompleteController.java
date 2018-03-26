@@ -25,9 +25,7 @@ import javax.imageio.ImageIO;
  */
 public class CompleteController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @FXML private ImageView imageView;
    
     
@@ -43,7 +41,7 @@ public class CompleteController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
         try{
             imageFile = new File("./src/Images/car.jpg");
             BufferedImage bufferedImage = ImageIO.read(imageFile);

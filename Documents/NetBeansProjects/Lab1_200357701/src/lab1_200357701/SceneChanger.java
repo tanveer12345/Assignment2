@@ -17,10 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author tanve
- */
+
 public class SceneChanger {
     
     
@@ -32,7 +29,7 @@ public class SceneChanger {
         
         Scene scene = new Scene(parent);
         
-        //get the stage from the event passed in
+
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         stage.setTitle(title);

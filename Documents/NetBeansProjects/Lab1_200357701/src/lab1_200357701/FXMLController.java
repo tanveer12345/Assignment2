@@ -83,9 +83,6 @@ public class FXMLController implements Initializable {
         
     } 
     
-    /**
-     * This method will load the contacts from the database and load them into the TableView object
-     */
     public void loadCars() throws SQLException
     {
         ObservableList<cars> Cars = FXCollections.observableArrayList();
@@ -100,10 +97,10 @@ public class FXMLController implements Initializable {
             //2. create a statement object
             statement = conn.createStatement();
             
-            //3. createthe SQL query
+            //3. create the SQL query
             resultSet = statement.executeQuery("SELECT * FROM cars");
             
-            //4. create contact objects from each record
+            //4. 
             while(resultSet.next())
             {
                 cars Car = new cars(resultSet.getString("make"),
@@ -134,7 +131,13 @@ public class FXMLController implements Initializable {
      public void maximumresolutionSliderMoved() throws SQLException{
     String label = String.format("%.0f ", maximumresolutionSlider.getValue());
         maximumresolutionLabel.setText(label);
-        updateCarSlider();
+        if(makeComboBox.getValue() == null){
+            updateCarSlider();
+        }
+        else{
+            updateCarSliderAndMake();
+        }
+        
         
         
     }
@@ -143,6 +146,12 @@ public class FXMLController implements Initializable {
     String label = String.format("%.0f", minimumresolutionSlider.getValue());
         minimumresolutionLabel.setText(label);
         updateCarSlider();
+          if(makeComboBox.getValue() == null){
+            updateCarSlider();
+        }
+        else{
+            updateCarSliderAndMake();
+        }
         
     }
     
@@ -162,10 +171,59 @@ public class FXMLController implements Initializable {
             //2. create a statement object
             statement = conn.createStatement();
             
-            //3. createthe SQL query
+            //3. create the SQL query
             resultSet = statement.executeQuery("SELECT * FROM cars WHERE year BETWEEN "+minimumresolutionSlider.getValue()+ " AND " +maximumresolutionSlider.getValue());
             
-            //4. create contact objects from each record
+            //4. 
+            while(resultSet.next())
+            {
+                 cars Car = new cars(resultSet.getString("make"),
+                                                  resultSet.getString("model"),
+                                                  resultSet.getInt("year"),
+                                                  resultSet.getInt("mileage"));
+                Cars.add(Car);
+               
+               
+            }
+            carsTable.getItems().addAll(Cars);
+           
+           
+        }
+        
+        catch(Exception e){
+            System.err.println(e.getMessage());
+
+        }
+        finally{
+            if(conn != null)
+                conn.close();
+            if(statement != null)
+                statement.close();
+            if(resultSet != null)
+                resultSet.close();
+        }
+    }
+    
+    public void updateCarSliderAndMake() throws SQLException
+    {
+        this.carsTable.getItems().clear();
+        ObservableList<cars> Cars = FXCollections.observableArrayList();
+        String make = makeComboBox.getValue();
+        
+        Connection conn = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try{
+             //1. Connect to the database
+            conn = DriverManager.getConnection("jdbc:mysql://aws.computerstudi.es:3306/" + "gc200357701", "gc200357701", "20VCRJu0Fn");
+            
+            //2. create a statement object
+            statement = conn.createStatement();
+            
+            //3. create the SQL query
+            resultSet = statement.executeQuery("SELECT * FROM cars WHERE year BETWEEN "+minimumresolutionSlider.getValue()+ " AND " +maximumresolutionSlider.getValue()+" AND make = '"+make+"'");
+            
+            //4. 
             while(resultSet.next())
             {
                  cars Car = new cars(resultSet.getString("make"),
@@ -211,10 +269,10 @@ public class FXMLController implements Initializable {
          //2.  Prepare the query
            statement = (Statement) conn.createStatement();
           
-         //3 create and execute sql query
+         //3 Create and execute the query
            resultSet = statement.executeQuery("select make from cars");
            
-         //populate the combobox
+         //to fill/Populate the combobox
          while(resultSet.next()){
              
           makeComboBox.getItems().add(resultSet.getString("make"));
