@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="test3_200357701.CanController">
+    <stylesheets>
+        <URL value="@can.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@../../../Assignment2_200357701/src/assignment2_200357701/signupview.css" />
+         </stylesheets>
+         <children>
+            <VBox alignment="TOP_CENTER" fillWidth="false" layoutY="-14.0" prefHeight="802.0" prefWidth="1130.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-14.0">
+               <children>
+                  <Label fx:id="headerLabel" prefHeight="24.0" prefWidth="337.0" styleClass="header" text="Can Creator">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="164.0" prefWidth="559.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="328.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="485.0" minWidth="10.0" prefWidth="472.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="16.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <TextField fx:id="brandTextField" prefHeight="25.0" prefWidth="188.0" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Slider fx:id="volumeSlider" onMouseDragged="#maximumresolutionSliderMoved" prefHeight="48.0" prefWidth="189.0" />
+                           </children>
+                        </FlowPane>
+                        <Label text="Volume" GridPane.rowIndex="1" />
+                        <Label text="Brand" />
+                        <Button mnemonicParsing="false" onAction="#chooseImageButtonPushed" prefHeight="25.0" prefWidth="171.0" text="Create new Can" GridPane.rowIndex="2" />
+                     </children>
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <GridPane prefHeight="79.0" prefWidth="372.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="181.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="19.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#chooseImageButtonPushed" prefHeight="25.0" prefWidth="165.0" text="Display Sorted by ml" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#chooseImageButtonPushed" prefHeight="25.0" prefWidth="165.0" text="Filter for &gt;500 ml" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <TableView fx:id="canTable" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="170.0" prefWidth="279.0">
+                     <columns>
+                        <TableColumn fx:id="brandColumn" prefWidth="128.0" text="Brand" />
+                        <TableColumn fx:id="volumeColumn" prefWidth="152.0" text="Volume" />
+                     </columns>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="20.0" />
+                     </VBox.margin>
+                  </TableView>
+                  <Label fx:id="modelLabel" text="Label" />
+                  <ToolBar prefHeight="52.0" prefWidth="1110.0" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
